@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "417861303799",
+    "firebase_url": "https://quiz-27097.firebaseio.com",
+    "project_id": "quiz-27097",
+    "storage_bucket": "quiz-27097.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417861303799:android:fe9869a2c8faac5263c2f2",
+        "android_client_info": {
+          "package_name": "com.soft_lines.chatting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417861303799-sro2hk632ot7upurvgo9n6stpo1j5a2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Z0WE8N_Uw9kfF9AAKIY1sTm4lzcZWRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417861303799-sro2hk632ot7upurvgo9n6stpo1j5a2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
