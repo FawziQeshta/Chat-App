@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/primary"
+    android:layoutDirection="ltr"
     tools:context=".ui.MainActivity">
 
     <com.makeramen.roundedimageview.RoundedImageView
@@ -60,34 +61,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageProfile">
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/users"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:clipToPadding="false"-->
-<!--            android:orientation="vertical"-->
-<!--            android:overScrollMode="never"-->
-<!--            android:padding="@dimen/_20sdp"-->
-<!--            android:visibility="gone"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/conversionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:padding="@dimen/_20sdp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progress_bar"-->
-<!--            android:layout_width="@dimen/_25sdp"-->
-<!--            android:layout_height="@dimen/_25sdp"-->
-<!--            android:layout_gravity="center" />-->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/textErrorMessage"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginStart="@dimen/_24sdp"-->
-<!--            android:layout_marginEnd="@dimen/_24sdp"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="@color/error"-->
-<!--            android:textSize="@dimen/_12ssp"-->
-<!--            android:visibility="gone" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/textErrorMessage"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginStart="@dimen/_24sdp"-->
+        <!--            android:layout_marginEnd="@dimen/_24sdp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textColor="@color/error"-->
+        <!--            android:textSize="@dimen/_12ssp"-->
+        <!--            android:visibility="gone" />-->
 
     </FrameLayout>
 
@@ -101,8 +102,8 @@
         android:backgroundTint="@color/primary"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
-        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
