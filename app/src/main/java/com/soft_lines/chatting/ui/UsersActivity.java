@@ -1,14 +1,11 @@
 package com.soft_lines.chatting.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.soft_lines.chatting.R;
 import com.soft_lines.chatting.adapters.UserAdapter;
 import com.soft_lines.chatting.databinding.ActivityUsersBinding;
 import com.soft_lines.chatting.listeners.UserListener;
@@ -19,7 +16,7 @@ import com.soft_lines.chatting.utils.PreferencesManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity implements UserListener {
+public class UsersActivity extends BaseActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferencesManager preferencesManager;

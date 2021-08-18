@@ -1,7 +1,5 @@
 package com.soft_lines.chatting.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,7 +30,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ConversionListener {
+public class MainActivity extends BaseActivity implements ConversionListener {
 
     private ActivityMainBinding binding;
     private PreferencesManager preferencesManager;
@@ -146,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
     }
 
     private void updateToken(String token) {
+        preferencesManager.putString(Constants.KEY_FCM_TOKEN, token);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference documentReference = db.collection(Constants.KEY_COLLECTION_USERS)
                 .document(preferencesManager.getString(Constants.KEY_USER_ID));

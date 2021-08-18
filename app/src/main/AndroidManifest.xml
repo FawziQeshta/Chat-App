@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Chat">
+        android:theme="@style/Theme.Chat"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.ChatActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -20,8 +21,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.SignInActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

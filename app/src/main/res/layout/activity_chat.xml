@@ -35,9 +35,9 @@
         android:layout_marginEnd="@dimen/_16sdp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
-        app:tint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageInfo"
@@ -48,9 +48,9 @@
         android:layout_marginEnd="@dimen/_16sdp"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/ic_info"
-        app:tint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/textName"
@@ -73,8 +73,8 @@
         android:id="@+id/viewSupporter"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/primary"
         android:layout_marginTop="@dimen/_12sdp"
+        android:background="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -84,12 +84,12 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
-        app:stackFromEnd="true"
         android:padding="@dimen/_20sdp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/view_background"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
+        app:layout_constraintTop_toBottomOf="@id/textAvailable"
+        app:stackFromEnd="true" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -144,5 +144,18 @@
         app:layout_constraintEnd_toStartOf="@id/layoutSend"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <TextView
+        android:id="@+id/textAvailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:padding="@dimen/_2sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        android:text="@string/online"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
