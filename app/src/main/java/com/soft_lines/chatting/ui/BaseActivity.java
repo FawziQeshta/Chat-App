@@ -13,7 +13,7 @@ import com.soft_lines.chatting.utils.PreferencesManager;
 public class BaseActivity extends AppCompatActivity {
 
     protected DocumentReference documentReference;
-
+// fawzi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
