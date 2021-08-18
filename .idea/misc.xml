@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/drawable/background_splash.xml" value="0.2703125" />
         <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/activity_chat.xml" value="0.25025641025641027" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/activity_main.xml" value="0.25025641025641027" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/activity_sign_in.xml" value="0.25025641025641027" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/activity_sign_up.xml" value="0.25025641025641027" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/activity_users.xml" value="0.25025641025641027" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/item_container_recent_converion.xml" value="0.25025641025641027" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/layout/item_container_user.xml" value="0.13020833333333334" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
+        <entry key="..\:/MyProjects/Chat/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2703125" />
       </map>
     </option>
   </component>

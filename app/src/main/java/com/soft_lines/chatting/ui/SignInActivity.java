@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.soft_lines.chatting.R;
 import com.soft_lines.chatting.databinding.ActivitySignInBinding;
 import com.soft_lines.chatting.utils.Constants;
 import com.soft_lines.chatting.utils.PreferencesManager;
@@ -72,7 +73,7 @@ public class SignInActivity extends AppCompatActivity {
                         startActivity(intent);
                     } else {
                         loading(false);
-                        showToast("Unable to sign in");
+                        showToast(getString(R.string.unable_to_sign_in));
                     }
                 });
 
@@ -84,13 +85,13 @@ public class SignInActivity extends AppCompatActivity {
 
     private Boolean isValidSignInDetails() {
         if (binding.inputEmail.getText().toString().trim().isEmpty()) {
-            showToast("Enter email");
+            showToast(getString(R.string.enter_email));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-            showToast("Enter valid email");
+            showToast(getString(R.string.enter_valid_email));
             return false;
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
-            showToast("Enter password");
+            showToast(getString(R.string.enter_password));
             return false;
         } else {
             return true;

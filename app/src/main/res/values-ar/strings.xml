@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">محادثة</string>
+    <string name="welcome_back">مرحبا بعودتك!</string>
+    <string name="login_in_to_continue">تسجيل الدخول للمتابعة</string>
+    <string name="email">بريد إلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="create_new_account">انشاء حساب جديد</string>
+    <string name="add_image">إضافة صورة</string>
+    <string name="name">اسم</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="sign_up">اشتراك</string>
+    <string name="select_user">اختر المستخدم</string>
+    <string name="type_a_message">اكتب رسالة</string>
+    <string name="online">متصل</string>
+    <string name="signing_out">تسجيل خروج...</string>
+    <string name="unable_to_sign_out">غير قادر على الخروج</string>
+    <string name="unable_to_sign_in">غير قادر على تسجيل الدخول</string>
+    <string name="enter_email">أدخل البريد الإلكتروني</string>
+    <string name="enter_valid_email">أدخل بريدًا إلكترونيًا صالحًا</string>
+    <string name="enter_password">أدخل كلمة المرور</string>
+    <string name="select_profile_image">حدد صورة الملف الشخصي</string>
+    <string name="enter_name">أدخل الاسم</string>
+    <string name="confirm_your_password">أكد كلمة المرور</string>
+    <string name="password_confirm_password_must_be_same">يجب أن تكون كلمة المرور وتأكيد كلمة المرور متطابقة</string>
+    <string name="no_user_available">لا يوجد مستخدم متاح</string>
+    <string name="my_profile">بياناتي</string>
+    <string name="phone">هاتف</string>
+    <string name="enter_phone">أدخل الهاتف</string>
+    <string name="user_profile">بيانات المستخدم</string>
+</resources>

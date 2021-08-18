@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.soft_lines.chatting.R;
 import com.soft_lines.chatting.adapters.UserAdapter;
 import com.soft_lines.chatting.databinding.ActivityUsersBinding;
 import com.soft_lines.chatting.listeners.UserListener;
@@ -77,7 +78,7 @@ public class UsersActivity extends BaseActivity implements UserListener {
     }
 
     private void showErrorMessage() {
-        binding.textErrorMessage.setText(String.format("%s", "No user available"));
+        binding.textErrorMessage.setText(String.format("%s", getString(R.string.no_user_available)));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 

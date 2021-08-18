@@ -13,4 +13,19 @@
     <string name="select_user">Select User</string>
     <string name="type_a_message">Type a message</string>
     <string name="online">Online</string>
+    <string name="signing_out">Signing out...</string>
+    <string name="unable_to_sign_out">Unable to sign out</string>
+    <string name="unable_to_sign_in">Unable to sign in</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_valid_email">Enter valid email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="select_profile_image">Select profile image</string>
+    <string name="enter_name">Enter name</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="password_confirm_password_must_be_same"><![CDATA[Password & confirm password must be same]]></string>
+    <string name="no_user_available">No user available</string>
+    <string name="my_profile">My Profile</string>
+    <string name="phone">Phone</string>
+    <string name="enter_phone">Enter phone</string>
+    <string name="user_profile">User Profile</string>
 </resources>

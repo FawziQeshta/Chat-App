@@ -72,6 +72,13 @@ public class MainActivity extends BaseActivity implements ConversionListener {
             Intent intent = new Intent(getApplicationContext(), UsersActivity.class);
             startActivity(intent);
         });
+
+        binding.imageProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            intent.putExtra(Constants.KEY_USER_ID, preferencesManager.getString(Constants.KEY_USER_ID));
+            intent.putExtra(Constants.KEY_OTHER_USER, false);
+            startActivity(intent);
+        });
     }
 
     private void loadUserDetails() {
@@ -157,7 +164,7 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     }
 
     private void signOut() {
-        showToast("Signing out...");
+        showToast(getString(R.string.signing_out));
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference documentReference = db.collection(Constants.KEY_COLLECTION_USERS)
                 .document(preferencesManager.getString(Constants.KEY_USER_ID));
@@ -169,7 +176,7 @@ public class MainActivity extends BaseActivity implements ConversionListener {
                     Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                     startActivity(intent);
                     finish();
-                }).addOnFailureListener(e -> showToast("Unable to sign out"));
+                }).addOnFailureListener(e -> showToast(getString(R.string.unable_to_sign_out)));
     }
 
     @Override

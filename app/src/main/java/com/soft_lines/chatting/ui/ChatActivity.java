@@ -47,6 +47,7 @@ import retrofit2.Response;
 
 public class ChatActivity extends BaseActivity {
 
+    private final String TAG = "ChatActivity";
     private ActivityChatBinding binding;
     private User receiverUser;
     private List<ChatMessage> chatMessages;
@@ -146,7 +147,7 @@ public class ChatActivity extends BaseActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    showToast("Notification sent successfully");
+                    Log.e(TAG, "Notification sent successfully");
                 } else {
                     showToast("Error: " + response.code());
                 }
@@ -254,6 +255,13 @@ public class ChatActivity extends BaseActivity {
 
         binding.layoutSend.setOnClickListener(v -> {
             sendMessage();
+        });
+
+        binding.imageInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            intent.putExtra(Constants.KEY_USER_ID, receiverUser.id);
+            intent.putExtra(Constants.KEY_OTHER_USER, true);
+            startActivity(intent);
         });
     }
 

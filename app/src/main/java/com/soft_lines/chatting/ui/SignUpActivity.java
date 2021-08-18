@@ -26,7 +26,6 @@ import com.soft_lines.chatting.databinding.ActivitySignUpBinding;
 import com.soft_lines.chatting.utils.Constants;
 import com.soft_lines.chatting.utils.PreferencesManager;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -82,6 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
+        user.put(Constants.KEY_PHONE, binding.inputPhone.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE, encodedImage);
         // Add a new document with a generated ID
@@ -142,25 +142,28 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Boolean isValidSignUpDetails() {
         if (encodedImage == null) {
-            showToast("Select profile image");
+            showToast(getString(R.string.select_profile_image));
             return false;
         } else if (binding.inputName.getText().toString().trim().isEmpty()) {
-            showToast("Enter name");
+            showToast(getString(R.string.enter_name));
             return false;
         } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
-            showToast("Enter email");
+            showToast(getString(R.string.enter_email));
+            return false;
+        } else if (binding.inputPhone.getText().toString().trim().isEmpty()) {
+            showToast(getString(R.string.enter_phone));
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-            showToast("Enter valid email");
+            showToast(getString(R.string.enter_valid_email));
             return false;
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
-            showToast("Enter password");
+            showToast(getString(R.string.enter_password));
             return false;
         } else if (binding.inputConfirmPassword.getText().toString().trim().isEmpty()) {
-            showToast("Confirm your password");
+            showToast(getString(R.string.confirm_your_password));
             return false;
         } else if (!binding.inputPassword.getText().toString().equals(binding.inputConfirmPassword.getText().toString())) {
-            showToast("Password & confirm password must be same");
+            showToast(getString(R.string.password_confirm_password_must_be_same));
             return false;
         } else {
             return true;
