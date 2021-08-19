@@ -28,4 +28,5 @@
     <string name="phone">Phone</string>
     <string name="enter_phone">Enter phone</string>
     <string name="user_profile">User Profile</string>
+    <string name="image_message">Send a picture</string>
 </resources>

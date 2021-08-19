@@ -1,7 +1,11 @@
 package com.soft_lines.chatting.adapters;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -9,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.soft_lines.chatting.databinding.ItemContainerReceivedMessageBinding;
 import com.soft_lines.chatting.databinding.ItemContainerSentMessageBinding;
-import com.soft_lines.chatting.databinding.ItemContainerUserBinding;
 import com.soft_lines.chatting.models.ChatMessage;
-import com.soft_lines.chatting.models.User;
 
 import java.util.List;
 
@@ -79,8 +81,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         void setData(ChatMessage chatMessage) {
-            binding.textMessage.setText(chatMessage.message);
+            if (!chatMessage.messageText.isEmpty()) {
+                binding.textMessage.setVisibility(View.VISIBLE);
+                binding.textMessage.setText(chatMessage.messageText);
+            } else {
+                binding.textMessage.setVisibility(View.GONE);
+            }
             binding.textDateTime.setText(chatMessage.dateTime);
+            if (chatMessage.messageImage != null) {
+                binding.imageMessage.setVisibility(View.VISIBLE);
+                binding.imageMessage.setImageBitmap(getUserBitmapImage(chatMessage.messageImage));
+            }
         }
     }
 
@@ -94,12 +105,26 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         void setData(ChatMessage chatMessage, Bitmap receiverProfileImage) {
-            binding.textMessage.setText(chatMessage.message);
+            if (!chatMessage.messageText.isEmpty()) {
+                binding.textMessage.setVisibility(View.VISIBLE);
+                binding.textMessage.setText(chatMessage.messageText);
+            } else {
+                binding.textMessage.setVisibility(View.GONE);
+            }
             binding.textDateTime.setText(chatMessage.dateTime);
+            if (chatMessage.messageImage != null) {
+                binding.imageMessage.setVisibility(View.VISIBLE);
+                binding.imageMessage.setImageBitmap(getUserBitmapImage(chatMessage.messageImage));
+            }
             if (receiverProfileImage != null) {
                 binding.imageProfile.setImageBitmap(receiverProfileImage);
             }
         }
+    }
+
+    private static Bitmap getUserBitmapImage(String encodedImage) {
+        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
 }

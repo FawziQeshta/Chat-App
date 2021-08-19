@@ -29,4 +29,5 @@
     <string name="phone">هاتف</string>
     <string name="enter_phone">أدخل الهاتف</string>
     <string name="user_profile">بيانات المستخدم</string>
+    <string name="image_message">أرسل صورة</string>
 </resources>

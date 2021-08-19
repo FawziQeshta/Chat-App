@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -50,9 +49,9 @@ public class MessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId);
         builder.setSmallIcon(R.drawable.ic_notifications);
         builder.setContentTitle(user.name);
-        builder.setContentText(remoteMessage.getData().get(Constants.KEY_MESSAGE));
+        builder.setContentText(remoteMessage.getData().get(Constants.KEY_MESSAGE_TEXT));
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(
-                remoteMessage.getData().get(Constants.KEY_MESSAGE)
+                remoteMessage.getData().get(Constants.KEY_MESSAGE_TEXT)
         ));
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
         builder.setContentIntent(pendingIntent);

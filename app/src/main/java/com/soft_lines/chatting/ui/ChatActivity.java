@@ -3,12 +3,18 @@ package com.soft_lines.chatting.ui;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,6 +65,7 @@ public class ChatActivity extends BaseActivity {
     private FirebaseFirestore db;
     private String conversionId = null;
     private Boolean isReceiverAvailable = false;
+    private String encodedMessageImage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +90,14 @@ public class ChatActivity extends BaseActivity {
     }
 
     private void sendMessage() {
+        if (binding.inputMessage.getText().toString().trim().isEmpty() && encodedMessageImage == null)
+            return;
+
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferencesManager.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
-        message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+        message.put(Constants.KEY_MESSAGE_TEXT, binding.inputMessage.getText().toString().trim());
+        message.put(Constants.KEY_MESSAGE_IMAGE, encodedMessageImage);
         message.put(Constants.KEY_TIMESTAMP, new Date());
         db.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         if (conversionId != null) {
@@ -109,7 +123,7 @@ public class ChatActivity extends BaseActivity {
                 data.put(Constants.KEY_USER_ID, preferencesManager.getString(Constants.KEY_USER_ID));
                 data.put(Constants.KEY_NAME, preferencesManager.getString(Constants.KEY_NAME));
                 data.put(Constants.KEY_FCM_TOKEN, preferencesManager.getString(Constants.KEY_FCM_TOKEN));
-                data.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+                data.put(Constants.KEY_MESSAGE_TEXT, binding.inputMessage.getText().toString());
 
                 JSONObject body = new JSONObject();
                 body.put(Constants.REMOTE_MSG_DATA, data);
@@ -121,6 +135,7 @@ public class ChatActivity extends BaseActivity {
             }
         }
         binding.inputMessage.setText(null);
+        closeImageMessage();
     }
 
     private void showToast(String message) {
@@ -210,7 +225,8 @@ public class ChatActivity extends BaseActivity {
                     ChatMessage chatMessage = new ChatMessage();
                     chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+                    chatMessage.messageText = documentChange.getDocument().getString(Constants.KEY_MESSAGE_TEXT);
+                    chatMessage.messageImage = documentChange.getDocument().getString(Constants.KEY_MESSAGE_IMAGE);
                     chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                     chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                     chatMessages.add(chatMessage);
@@ -263,6 +279,24 @@ public class ChatActivity extends BaseActivity {
             intent.putExtra(Constants.KEY_OTHER_USER, true);
             startActivity(intent);
         });
+
+        binding.imageAddImage.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            pickImage.launch(intent);
+        });
+
+        binding.imageCloseImage.setOnClickListener(v -> {
+            closeImageMessage();
+        });
+
+        binding.inputMessage.addTextChangedListener(textWatcher);
+    }
+
+    private void closeImageMessage() {
+        encodedMessageImage = null;
+        binding.imageViewSent.setVisibility(View.GONE);
+        binding.imageCloseImage.setVisibility(View.GONE);
     }
 
     private String getReadableDateTime(Date date) {
@@ -309,5 +343,57 @@ public class ChatActivity extends BaseActivity {
         super.onResume();
         listenAvailabilityOfReceiver();
     }
+
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    if (result.getData() != null) {
+                        Uri uri = result.getData().getData();
+                        try {
+                            InputStream inputStream = getContentResolver().openInputStream(uri);
+                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                            binding.imageViewSent.setImageBitmap(bitmap);
+                            binding.imageCloseImage.setVisibility(View.VISIBLE);
+                            binding.imageViewSent.setVisibility(View.VISIBLE);
+                            encodedMessageImage = encodedImage(bitmap);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+    );
+
+    private String encodedImage(Bitmap bitmap) {
+        int previewWidth = 150;
+        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
+        Bitmap previewBimap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBimap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    private final TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (s.toString().isEmpty()) {
+                binding.imageAddImage.setVisibility(View.VISIBLE);
+            } else {
+                binding.imageAddImage.setVisibility(View.GONE);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
 }
